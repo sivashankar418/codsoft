@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="B1.css">
+    <title>CACULATOR</title>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" placeholder="0" id="display">
+        <div>
+            <button id="ac">AC</button>
+            <button id="del">DEL</button>
+            <button id="percent">%</button>
+            <button id="divide">/</button>
+        </div>
+        <div>
+            <button id="seven">7</button>
+            <button id="eight">8</button>
+            <button id="nine">9</button>
+            <button id="multiply">*</button>
+        </div>
+        <div>
+            <button id="four">4</button>
+            <button id="five">5</button>
+            <button id="six">6</button>
+            <button id="subtract">-</button>
+        </div>
+        <div>
+            <button id="one">1</button>
+            <button id="two">2</button>
+            <button id="three">3</button>
+            <button id="add">+</button>
+        </div>
+        <div>
+            <button id="zero">00</button>
+            <button id="zero2">0</button>
+            <button id="decimal">.</button>
+            <button id="equal">=</button>
+        </div>
+
+        <script>
+            let display = document.getElementById('display');
+            let buttons = document.querySelectorAll('button');
+
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    let value = button.textContent;
+
+                    if (value === 'AC') {
+                        display.value = '';
+                    } else if (value === 'DEL') {
+                        display.value = display.value.slice(0, -1);
+                    } else if (value === '=') {
+                        try {
+                            display.value = eval(display.value);
+                        } catch (error) {
+                            display.value = 'Error';
+                        }
+                    } else if (value === '.') {
+                        if (!display.value.includes('.')) {
+                            display.value += value;
+                        }
+                    } else {
+                        display.value += value;
+                    }
+                });
+            });
+        </script>
+    </div>
+</body>
+</html>
